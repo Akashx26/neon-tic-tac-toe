@@ -39,7 +39,7 @@ let gameState = null;
 let isRequesting = false;
 
 // Time between the player's move and computer's move.
-const COMPUTER_MOVE_DELAY = 650;
+const COMPUTER_MOVE_DELAY = 350;
 
 
 // ==========================================
