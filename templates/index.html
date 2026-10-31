@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEON TIC TAC TOE</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <main class="app-container">
+
+        <!-- ================================= -->
+        <!-- HEADER -->
+        <!-- ================================= -->
+
+        <header class="header">
+
+            <div class="logo">
+                <span class="logo-x">X</span>
+                <span class="logo-divider">/</span>
+                <span class="logo-o">O</span>
+            </div>
+
+            <div class="header-title">
+                <h1>NEON TIC TAC TOE</h1>
+                <p>THINK FAST. PLAY SMART. WIN BIG.</p>
+            </div>
+
+            <div class="header-tag">
+                <span class="status-dot"></span>
+                ARCADE MODE
+            </div>
+
+        </header>
+
+
+        <!-- ================================= -->
+        <!-- GAME SETUP -->
+        <!-- ================================= -->
+
+        <section class="setup-panel">
+
+            <div class="section-heading">
+                <span class="section-number">01</span>
+
+                <div>
+                    <h2>GAME CONFIGURATION</h2>
+                    <p>Customize your match</p>
+                </div>
+            </div>
+
+
+            <!-- GAME MODE -->
+
+            <div class="setting-group">
+
+                <label>SELECT GAME MODE</label>
+
+                <div class="option-group" id="mode-options">
+
+                    <button class="option-btn active"
+                            data-mode="VS Computer">
+
+                        <span class="option-icon">🤖</span>
+                        <span>VS COMPUTER</span>
+
+                    </button>
+
+                    <button class="option-btn"
+                            data-mode="Player VS Player">
+
+                        <span class="option-icon">👥</span>
+                        <span>PLAYER VS PLAYER</span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIFFICULTY -->
+
+            <div class="setting-group" id="difficulty-group">
+
+                <label>SELECT DIFFICULTY</label>
+
+                <div class="option-group difficulty-options"
+                     id="difficulty-options">
+
+                    <button class="option-btn"
+                            data-difficulty="Easy">
+                        EASY
+                    </button>
+
+                    <button class="option-btn active"
+                            data-difficulty="Medium">
+                        MEDIUM
+                    </button>
+
+                    <button class="option-btn"
+                            data-difficulty="Hard">
+                        HARD
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PLAYER SYMBOL -->
+
+            <div class="setting-group" id="symbol-group">
+
+                <label>CHOOSE YOUR SYMBOL</label>
+
+                <div class="option-group symbol-options"
+                     id="symbol-options">
+
+                    <button class="option-btn symbol-btn active"
+                            data-symbol="X">
+
+                        <span class="symbol-x">X</span>
+                        <span>PLAY AS X</span>
+
+                    </button>
+
+                    <button class="option-btn symbol-btn"
+                            data-symbol="O">
+
+                        <span class="symbol-o">O</span>
+                        <span>PLAY AS O</span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- START GAME -->
+
+            <button class="start-btn" id="start-game-btn">
+
+                <span>START GAME</span>
+                <span class="button-arrow">→</span>
+
+            </button>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- GAME AREA -->
+        <!-- ================================= -->
+
+        <section class="game-panel">
+
+            <div class="section-heading">
+
+                <span class="section-number">02</span>
+
+                <div>
+                    <h2>THE BATTLEFIELD</h2>
+                    <p>Make your move</p>
+                </div>
+
+            </div>
+
+
+            <!-- TURN INDICATOR -->
+
+            <div class="turn-display" id="turn-display">
+
+                <span class="turn-indicator-dot"></span>
+
+                <span id="turn-message">
+                    CONFIGURE YOUR GAME TO BEGIN
+                </span>
+
+            </div>
+
+
+            <!-- GAME BOARD -->
+
+            <div class="board-container">
+
+                <div class="game-board" id="game-board">
+
+                    <button class="cell" data-position="0"
+                            aria-label="Cell 1"></button>
+
+                    <button class="cell" data-position="1"
+                            aria-label="Cell 2"></button>
+
+                    <button class="cell" data-position="2"
+                            aria-label="Cell 3"></button>
+
+                    <button class="cell" data-position="3"
+                            aria-label="Cell 4"></button>
+
+                    <button class="cell" data-position="4"
+                            aria-label="Cell 5"></button>
+
+                    <button class="cell" data-position="5"
+                            aria-label="Cell 6"></button>
+
+                    <button class="cell" data-position="6"
+                            aria-label="Cell 7"></button>
+
+                    <button class="cell" data-position="7"
+                            aria-label="Cell 8"></button>
+
+                    <button class="cell" data-position="8"
+                            aria-label="Cell 9"></button>
+
+                </div>
+
+            </div>
+
+
+            <!-- MATCH RESULT -->
+
+            <div class="result-message" id="result-message"
+                 aria-live="polite">
+
+                <span id="result-text"></span>
+
+            </div>
+
+
+            <!-- GAME CONTROLS -->
+
+            <div class="game-controls">
+
+                <button class="control-btn" id="new-match-btn">
+
+                    <span>↻</span>
+                    NEW MATCH
+
+                </button>
+
+                <button class="control-btn reset-btn"
+                        id="reset-game-btn">
+
+                    <span>⟲</span>
+                    RESET SCORES
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- SCOREBOARD -->
+        <!-- ================================= -->
+
+        <section class="scoreboard-panel">
+
+            <div class="section-heading">
+
+                <span class="section-number">03</span>
+
+                <div>
+                    <h2>LIVE SCOREBOARD</h2>
+                    <p>Track your victories</p>
+                </div>
+
+            </div>
+
+
+            <div class="scoreboard">
+
+                <div class="score-card score-x">
+
+                    <span class="score-symbol">X</span>
+
+                    <span class="score-label">PLAYER X</span>
+
+                    <span class="score-value" id="score-x">
+                        0
+                    </span>
+
+                </div>
+
+
+                <div class="score-card score-draw">
+
+                    <span class="score-symbol">＝</span>
+
+                    <span class="score-label">DRAWS</span>
+
+                    <span class="score-value" id="score-draw">
+                        0
+                    </span>
+
+                </div>
+
+
+                <div class="score-card score-o">
+
+                    <span class="score-symbol">O</span>
+
+                    <span class="score-label">PLAYER O</span>
+
+                    <span class="score-value" id="score-o">
+                        0
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- FOOTER -->
+        <!-- ================================= -->
+
+        <footer class="footer">
+
+            <p>NEON TIC TAC TOE</p>
+
+            <span>BUILT TO CHALLENGE YOUR MIND.</span>
+
+            <p class="footer-credit">
+                POWERED BY PYTHON + FLASK
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- Main JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}">
+    </script>
+
+</body>
+</html>
